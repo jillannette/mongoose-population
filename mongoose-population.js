@@ -114,8 +114,15 @@ critic1.reviews.push(review);
   //   console.log(book.reviews);
   // })
 
-  Critic.findOne({ name: "Critic 1" })
-  .populate("reviews", "reviewText -_id")
-  .exec((err, critic) => {
-    console.log(critic.reviews);
+  // Critic.findOne({ name: "Critic 1" })
+  // .populate("reviews", "reviewText -_id")
+  // .exec((err, critic) => {
+  //   console.log(critic.reviews);
+  // });
+
+  Critic.findOne({ name: "Critic 1" }, (err, critic) => {
+    //now we have a single critic
+    critic.populate("reviews", () => {
+      console.log(critic.reviews);
+    });
   });
