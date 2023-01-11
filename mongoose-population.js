@@ -56,8 +56,30 @@ critic1.reviews.push(review);
 //     console.log(book);
 //   });
 
-  Critic.findOne({ name: 'Critic 1' })
-    .populate('reviews')
-    .exec((err, book) => {
-      console.log(book);
-    });
+  // Critic.findOne({ name: 'Critic 1' })
+  //   .populate('reviews')
+  //   .exec((err, book) => {
+  //     console.log(book);
+  //   });
+
+  // Book.findOne({ title: "Book 1" })
+  // .populate("reviews")
+  // .exec((err, book) => {
+  //   if (err) {
+  //     console.error(err);
+  //   } else {
+  //     console.log(book.reviews[0].critic);
+  //   }
+  // });
+
+  Book.findOne({ title: "Book 1" })
+  .populate({
+    path: "reviews",
+    populate: {
+      path: "critic",
+    },
+  })
+  .exec((err, book) => {
+    console.log(err);
+    console.log(book.reviews[0].critic);
+  });
