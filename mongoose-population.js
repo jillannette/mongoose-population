@@ -42,10 +42,22 @@ let review = new Review({
   reviewText: "Excellent Book",
 });
 
-review.save();
+// review.save();
 
 book1.reviews.push(review);
 critic1.reviews.push(review);
 
-book1.save();
-critic1.save();
+// book1.save();
+// critic1.save();
+
+// Book.findOne({ title: "Book 1" })
+//   .populate("reviews")
+//   .exec((err, book) => {
+//     console.log(book);
+//   });
+
+  Critic.findOne({ name: 'Critic 1' })
+    .populate('reviews')
+    .exec((err, book) => {
+      console.log(book);
+    });
