@@ -84,14 +84,20 @@ critic1.reviews.push(review);
   //   console.log(book.reviews[0].critic);
   // });
 
-  Critic.findOne({ name: 'Critic 1' })
-  .populate({
-    path: 'reviews',
-    populate: {
-      path: 'book',
-    },
-  })
-  .exec((err, critic) => {
-    console.log(err);
-    console.log(critic.reviews[0].book);
+  // Critic.findOne({ name: 'Critic 1' })
+  // .populate({
+  //   path: 'reviews',
+  //   populate: {
+  //     path: 'book',
+  //   },
+  // })
+  // .exec((err, critic) => {
+  //   console.log(err);
+  //   console.log(critic.reviews[0].book);
+  // });
+
+  Review.find({})
+  .populate("critic book")
+  .exec((err, review) => {
+    console.log(review[0]);
   });
