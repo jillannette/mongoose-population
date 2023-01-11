@@ -120,9 +120,17 @@ critic1.reviews.push(review);
   //   console.log(critic.reviews);
   // });
 
-  Critic.findOne({ name: "Critic 1" }, (err, critic) => {
-    //now we have a single critic
-    critic.populate("reviews", () => {
-      console.log(critic.reviews);
+  // Critic.findOne({ name: "Critic 1" }, (err, critic) => {
+  //   //now we have a single critic
+  //   critic.populate("reviews", () => {
+  //     console.log(critic.reviews);
+  //   });
+  // });
+
+  Critic.find((err, critics) => {
+    //now we have an array of critics
+    Critic.populate(critics, { path: "reviews" }, (err, data) => {
+      //now data is an array of populated critics
+      console.log(data);
     });
   });
